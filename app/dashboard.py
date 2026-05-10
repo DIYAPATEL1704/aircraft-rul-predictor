@@ -828,4 +828,6 @@ def update_engine(engine_id, sensor):
 server = app.server
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 8050))
+    app.run(debug=False, host='0.0.0.0', port=port)
