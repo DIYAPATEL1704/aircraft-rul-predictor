@@ -825,6 +825,7 @@ def update_engine(engine_id, sensor):
     )
     return status, rul_text, gauge, s_fig, sbar, pva
 
+server = app.server
 
 if __name__ == '__main__':
     app.run(debug=True)
