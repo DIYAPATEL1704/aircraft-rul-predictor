@@ -8,16 +8,19 @@ import json
 import joblib
 
 # ── Load data ──────────────────────────────────────────────
-train_df = pd.read_csv('../data/processed/train_processed.csv')
-test_df  = pd.read_csv('../data/processed/test_processed.csv')
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-with open('../data/processed/predictions.json') as f:
+train_df = pd.read_csv(os.path.join(BASE_DIR, 'data/processed/train_processed.csv'))
+test_df  = pd.read_csv(os.path.join(BASE_DIR, 'data/processed/test_processed.csv'))
+
+with open(os.path.join(BASE_DIR, 'data/processed/predictions.json')) as f:
     preds = json.load(f)
 
-with open('../data/processed/useful_sensors.json') as f:
+with open(os.path.join(BASE_DIR, 'data/processed/useful_sensors.json')) as f:
     useful_sensors = json.load(f)
 
-rf_model = joblib.load('../models/random_forest.pkl')
+rf_model = joblib.load(os.path.join(BASE_DIR, 'models/random_forest.pkl'))
 
 engine_ids   = preds['engine_ids']
 actual_rul   = preds['actual_rul']
